@@ -103,7 +103,7 @@ function createRandomBall({boxWidth, boxHeight}) {
     const directionX = Math.random() > 0.5 ? DIRECTION.LEFT : DIRECTION.RIGHT;
     const directionY = Math.random() > 0.5 ? DIRECTION.UP : DIRECTION.DOWN;
     const moveSpeed = Math.random() * 500 + 10;
-    const recolorSpeed = Math.random() * HslColor.MAX_HUE * 0.1;
+    const recolorSpeed = Math.random() * HslColor.MAX_HUE;
     const hue = Math.random() * HslColor.MAX_HUE;
     const saturation = Math.random();
     const lightness = Math.random();

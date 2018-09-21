@@ -22,7 +22,8 @@ function Vec2(x, y) {
         return Math.sqrt(Math.pow(this.x, 2) + Math.pow(this.y, 2));
     }
     this.normalize = function() {
-        return this.divideScalar(this.length());
+        const length = this.length();
+        return length ? this.divideScalar(this.length()) : new Vec2(0, 0);
     }
 
     Object.freeze(this);
@@ -62,7 +63,19 @@ function moveBall({ball, dt}) {
 
 function update({balls, dt}) {
     for (const ball of balls) {
-        ball.speed = ball.speed.add(FREE_FALL_ACCELERATION.multiplyScalar(dt));
+        // {
+        //     ball.speed = ball.speed.add(FREE_FALL_ACCELERATION.multiplyScalar(dt));
+        // }
+        {
+            const ANTISPEED_VALUE = 3;
+            const antiSpeed = ball.speed.normalize().multiplyScalar(-1 * ANTISPEED_VALUE * dt);
+            if (antiSpeed.length() >= ball.speed.length()) {
+                ball.speed = new Vec2(0, 0); 
+            }
+            else {
+                ball.speed = ball.speed.add(antiSpeed);
+            }
+        }
     }
     for (const ball of balls) {
         moveBall({ball, dt});
@@ -76,14 +89,14 @@ function main() {
     const height = canvasEl.offsetHeight / METER_IN_PX;
     const ctx = canvas.getContext('2d');
 
-    const ball = new Ball({
-        position: new Vec2(Math.floor(width / 2), Ball.RADIUS * 2),
-    });
+    // const ball = new Ball({
+    //     position: new Vec2(Math.floor(width / 2), Ball.RADIUS * 2),
+    // });
 
-    /*const ball = new Ball({
+    const ball = new Ball({
         position: new Vec2(Math.floor(width / 2), height - Ball.RADIUS * 2),
     });
-    ball.speed = new Vec2(1, -4);*/
+    ball.speed = new Vec2(1, -3);
 
     redraw({ctx, balls: [ball]});
 

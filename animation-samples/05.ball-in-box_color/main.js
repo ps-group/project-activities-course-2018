@@ -108,7 +108,7 @@ function main() {
         color: new HslColor({
             hue: 0,
             saturation: 1,
-            lightness: 0.3,
+            lightness: 0.5,
         }),
     });
 

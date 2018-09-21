@@ -94,7 +94,7 @@ function main() {
 
     // {
     //     redraw({ctx, width, height, ball});
-    //     const BALL_SPEED = 1; //30px в секунду
+    //     const BALL_SPEED = 30; //30px в секунду
 
     //     let lastTimestamp = Date.now(); //текущее время в ms
     //     const animateFn = () => {
