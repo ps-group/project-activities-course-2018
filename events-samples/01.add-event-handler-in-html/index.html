@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Page Title</title>
+    <style>
+        .rect1, .rect2 {
+            width: 300px; 
+            height: 200px;
+            margin-top: 30px;
+        }
+        .rect1 {
+            background-color: green;
+        }
+        .rect2 {
+            background-color: red;
+        }
+    </style>
+    <script>
+        function onMouseOver() {
+            console.log('mouse move');
+        }
+    </script>
+</head>
+<body>
+    <button onclick="alert('Клик')">Нажми на кнопку</button>
+    <div class="rect1" onmouseover="console.log('mouse over')" onmouseout="console.log('mouse out')"></div>
+    <div class="rect2" onmousemove="onMouseOver()"></div>
+</body>
+</html>
